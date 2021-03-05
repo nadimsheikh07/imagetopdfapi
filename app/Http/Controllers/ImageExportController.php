@@ -9,6 +9,10 @@ class ImageExportController extends Controller
 {
     public function index()
     {
+        if (request('images')) {
+            $images = json_decode(request('images'));
+        }
+
         $data['images'] = [
             public_path('/images/image4.jpeg'),
             public_path('/images/image5.jpeg'),
