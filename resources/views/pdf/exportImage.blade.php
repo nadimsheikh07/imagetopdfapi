@@ -8,11 +8,9 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="padding: 0;margin:0;">
     @foreach($images as $image)
-    <div>
-        <img src="{{ $image }}" />
-    </div>
+    <img style="padding: 0;margin:0;width:100%;height:100%;" height="100%" width="100%" src="{{ $image }}" />
     @endforeach
 </body>
 

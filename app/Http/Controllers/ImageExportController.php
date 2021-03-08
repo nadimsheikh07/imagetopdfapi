@@ -13,6 +13,14 @@ class ImageExportController extends Controller
             $images = json_decode(request('images'));
         }
 
+        // $data['images'] = [
+        //     asset('/images/image4.jpeg'),
+        //     asset('/images/image5.jpeg'),
+        //     asset('/images/image6.jpeg'),
+        // ];
+
+        // return view('pdf/exportImage', $data);
+
         $data['images'] = [
             public_path('/images/image4.jpeg'),
             public_path('/images/image5.jpeg'),
