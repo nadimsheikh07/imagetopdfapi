@@ -11,8 +11,14 @@ Run the following command to run application.
 ```bash
 php artisan serve
 ```
-Run the following url to export pdf.
+Run the following command to link storage.
 
+```bash
+php artisan storage:link
+```
+
+
+Run the following url to export pdf.
 
 ```bash
 http://127.0.0.1:8000/api/image_export
