@@ -10,7 +10,6 @@ class ImageExportController extends Controller
 {
     public function index()
     {
-
         $client = new \GuzzleHttp\Client();
 
         if (request('images')) {
@@ -27,9 +26,8 @@ class ImageExportController extends Controller
 
                 if ($statusCode == 200) {
                     $content =  json_decode($response->getBody());
-
+                    // create image using base64
                     Storage::disk('public_uploads')->put("{$value}.png", base64_decode($content->file_content));
-
                     if (Storage::disk('public_uploads')->exists("{$value}.png")) {
                         $responseData[] = public_path("uploads/{$value}.png");
                     }
@@ -72,6 +70,8 @@ class ImageExportController extends Controller
             // ],
         ]);
 
+
+        // delete images
         if ($images) {
             foreach ($images as $value) {
                 Storage::disk('public_uploads')->delete("{$value}.png");
