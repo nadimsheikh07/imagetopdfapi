@@ -21,5 +21,6 @@ php artisan storage:link
 Run the following url to export pdf.
 
 ```bash
-http://127.0.0.1:8000/api/image_export?images=[1,3,4]
+http://127.0.0.1:8000/api/image_export?images=[1,2,3,4]
+https://nearyoutech.com/imagetopdfapi/api/image_export?images=[1,2,3,4]
 ```
