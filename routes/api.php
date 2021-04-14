@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('image_export', [ImageExportController::class, 'index']);
+Route::post('send_mail', [ImageExportController::class, 'sendMail']);

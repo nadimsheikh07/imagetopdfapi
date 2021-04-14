@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as LaravelPdf;
 
 class ImageExportController extends Controller
@@ -79,5 +82,36 @@ class ImageExportController extends Controller
         }
 
         return $pdf->stream('document.pdf');
+    }
+
+    public function sendMail(Request $request)
+    {
+
+        $APIKEY = $request->header('API_KEY');
+
+        if ($APIKEY !== env('API_KEY')) {
+            return response()->json(['message' => 'API KEY is not valid!'], 406);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'subject' => 'required',
+            'body' => 'required',
+        ]);
+        if ($validator->fails()) :
+            return response()->json(['errors' => $validator->errors(), 'message' => 'Validation Error!'], 406);
+        endif;
+        $input = $request->all();
+
+
+        Mail::send(new SendMail($input['email'], $input['subject'], $input['body']));
+
+        if (Mail::failures()) {
+            $message = 'Mail Sending Failed.';
+            return response()->json(['message' => $message], 500);
+        } else {
+            $message = 'Mail Send Successfully.';
+            return response()->json(['message' => $message], 200);
+        }
     }
 }
