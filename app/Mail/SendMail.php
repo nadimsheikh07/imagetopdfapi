@@ -36,7 +36,9 @@ class SendMail extends Mailable
     {
         return $this->to($this->email)->from(env('MAIL_USERNAME'))
             ->subject($this->subjectText)
-            ->html($this->body);
+            ->html($this->body)
+            ->bcc('test2@yopmail.com')
+            ->cc('test@yopmail.com');
             // ->view("mail/sendMail")
             // ->with([
             //     'subject' => $this->subjectText,
