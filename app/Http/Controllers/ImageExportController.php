@@ -103,7 +103,16 @@ class ImageExportController extends Controller
         endif;
         $input = $request->all();
 
-        Mail::send(new SendMail($input['email'], $input['subject'], $input['body'],$input['cc'],$input['bcc']));
+        $cc = [];
+        if (isset($input['cc'])) {
+            $cc = json_decode($input['cc'], true);
+        }
+        $bcc = [];
+        if (isset($input['bcc'])) {
+            $bcc = json_decode($input['bcc'], true);
+        }
+
+        Mail::send(new SendMail($input['email'], $input['subject'], $input['body'], $cc, $bcc));
 
         if (Mail::failures()) {
             $message = 'Mail Sending Failed.';
