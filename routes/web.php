@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,21 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/sendmail',function (){
-    dump(env('MAIL_FROM_ADDRESS'));
-    try{
-        $mail=\Illuminate\Support\Facades\Mail::to('bhavya@yopmail.com')->send(new \App\Mail\TestMail());
-        dd('Sent',$mail);
-    }catch (Exception $er){
-        dd($er);
-    };
-//   $mail=\Illuminate\Support\Facades\Mail::send(new \App\Mail\TestMail());
-//
-//   if($mail)
-//   {
-//       dd('mail sent');
-//   }else
-//       dd('mail not sent');
 });

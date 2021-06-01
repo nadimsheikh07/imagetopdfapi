@@ -103,8 +103,7 @@ class ImageExportController extends Controller
         endif;
         $input = $request->all();
 
-
-        Mail::send(new SendMail($input['email'], $input['subject'], $input['body']));
+        Mail::send(new SendMail($input['email'], $input['subject'], $input['body'],$input['cc'],$input['bcc']));
 
         if (Mail::failures()) {
             $message = 'Mail Sending Failed.';

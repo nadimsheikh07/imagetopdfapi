@@ -14,17 +14,21 @@ class SendMail extends Mailable
     public $email;
     public $subjectText;
     public $body;
+    public $ccEmails;
+    public $bccEmails;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email, $subjectText, $body)
+    public function __construct($email, $subjectText, $body, $cc, $bcc)
     {
         $this->email = $email;
         $this->subjectText = $subjectText;
         $this->body = $body;
+        $this->ccEmails = $cc;
+        $this->bccEmails = $bcc;
     }
 
     /**
@@ -37,8 +41,8 @@ class SendMail extends Mailable
         return $this->to($this->email)->from(env('MAIL_USERNAME'))
             ->subject($this->subjectText)
             ->html($this->body)
-            ->bcc('test2@yopmail.com')
-            ->cc('test@yopmail.com');
+            ->bcc($this->bccEmails)
+            ->cc($this->ccEmails);
             // ->view("mail/sendMail")
             // ->with([
             //     'subject' => $this->subjectText,
