@@ -39,8 +39,10 @@ HTTP METHOD POST
 
 Params
 
-email=abcd@gmail.com
-subject=test subject
-body=<h1>Hello World</h1>
+email:abcd@gmail.com
+subject:test subject
+body:<h1>Hello World</h1>
+cc:["nadim.sheikh.07@gmail.com"]
+bcc:["nadim.sheikh.07@gmail.com"]
 
 ```
